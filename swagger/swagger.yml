@@ -1,0 +1,89 @@
+swagger: "2.0"
+info:
+  version: 0.0.1
+  title: UnoHouse API
+  description: Service to write/read Web panel data
+basePath: "/"
+produces:
+  - application/json
+paths:
+  "/healthcheck":
+    get:
+      summary: Get Health status
+      description: ''
+      responses:
+        '200':
+          description: OK
+        '400':
+          "$ref": "#/responses/badRequest"
+        '500':
+          "$ref": "#/responses/internalServerError"
+responses:
+  badRequest:
+    description: Bad request
+    schema:
+      "$ref": "#/definitions/ErrorResponse"
+  internalServerError:
+    description: Internal server error
+    schema:
+      "$ref": "#/definitions/ErrorResponse"
+  serviceUnavailable:
+    description: Service unavailable
+    schema:
+      "$ref": "#/definitions/ErrorResponse"
+  notFound:
+    description: Not found
+    schema:
+      "$ref": "#/definitions/ErrorResponse"
+parameters:
+  id:
+    name: id
+    description: resource unique identifier
+    type: string
+    required: true
+    in: path
+  companyId:
+    name: companyId
+    description: 'company id filter - Values are separated by | (e.g: ?companyId=1|2|3)'
+    type: string
+    in: query
+definitions:
+  Error:
+    type: object
+    properties:
+      location:
+        type: string
+        description: The name of the field/property where the issue occurs
+      locationType:
+        type: string
+        description: Place in request where error origin can be found - possible values
+          are header, body, query
+      reason:
+        type: string
+      message:
+        type: string
+    required:
+      - location
+      - locationType
+      - reason
+  ErrorResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        description: http status code
+      reason:
+        type: string
+        description: http status reason
+      message:
+        type: string
+        description: short error description
+      errors:
+        type: array
+        description: array of error objects containing more detail information
+        minItems: 1
+        items:
+          "$ref": "#/definitions/Error"
+    required:
+      - code
+      - reason
