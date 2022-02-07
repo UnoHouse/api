@@ -1,4 +1,4 @@
 .env
 unohouse
-build
 bin
+.vscode
