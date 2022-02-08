@@ -25,8 +25,8 @@ type SqlServiceImpl struct {
 	db mySql.DB
 }
 
-func NewMySqlService(db mySql.DB) SqlServiceImpl {
-	return SqlServiceImpl{db}
+func NewMySqlService(db mySql.DB) *SqlServiceImpl {
+	return &SqlServiceImpl{db}
 }
 
 func (s *SqlServiceImpl) GetNotificationsByUserId(userId int64) (notifications *model.Notifications, err error) {
