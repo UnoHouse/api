@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/UnoHouse/api/service"
+	"github.com/gorilla/mux"
 )
 
 type HandlerFunc func(http.ResponseWriter, *http.Request)
@@ -26,10 +27,11 @@ type Handler interface {
 }
 
 type handler struct {
+	Router         *mux.Router
 	sqlService     service.SqlService
 	userSqlService service.UserSqlService
 }
 
-func NewHandler(s service.SqlService, us service.UserSqlService) Handler {
-	return handler{s, us}
+func NewHandler(r *mux.Router, s service.SqlService, us service.UserSqlService) Handler {
+	return handler{r, s, us}
 }

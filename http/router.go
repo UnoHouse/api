@@ -29,6 +29,10 @@ func NewRouter(handler Handler) http.Handler {
 	return router
 }
 
+func SetupRoutes(router *mux.Router, handler Handler) {
+
+}
+
 func setupHealthCheck(r *mux.Router) {
 	r.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)

@@ -21,7 +21,7 @@ func (h handler) getUsersId() HandlerFunc {
 		intId, err := strconv.ParseInt(userId, 10, 64)
 		if err != nil {
 			logger.Log(err.Error(), logger.Error)
-			respondBadRequest(w, "")
+			respondBadRequest(w, "Wrong paramater Type. Required int")
 			return
 		}
 
