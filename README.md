@@ -43,13 +43,10 @@ MYSQL_USERS_DATABASE=
 
 * add goroutines for
 
-* notifications sendout
-
-* faker generators
-
-	* more example users
-
-	* more devices
+	* notifications sendout
+	* faker generators
+		* more example users
+		* more devices
 
 * add tests
 	* at least for core endpoints
